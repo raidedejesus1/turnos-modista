@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aguja y Ojal · Turnos de prueba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF3E8;--surf:#F0E4D0;--card:#FFFBF5;--ink:#3B2A22;--mute:#6F5F54;--terra:#A94F2C;--onterra:#fff;--teal:#1F5F6B;--line:#D9C7AE;--err:#A12B2B;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241A15;--surf:#33251E;--card:#2D211B;--ink:#F3E8D8;--mute:#BCAA98;--terra:#D9805A;--onterra:#2A160C;--teal:#6FB5C2;--line:#4A382E;--err:#F08A8A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#241A15;--surf:#33251E;--card:#2D211B;--ink:#F3E8D8;--mute:#BCAA98;--terra:#D9805A;--onterra:#2A160C;--teal:#6FB5C2;--line:#4A382E;--err:#F08A8A;color-scheme:dark}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,system-ui,sans-serif}
+h1,h2{font-family:Lora,Georgia,serif;font-weight:600;margin:0}
+h2{font-size:1.5rem;margin:20px 0 4px}
+main{max-width:720px;margin:0 auto;padding:12px 16px 40px}
+header{border-bottom:2px dashed var(--line);padding-bottom:12px}
+.brand{display:flex;gap:12px;align-items:center;padding-top:8px}
+.brand h1{font-size:1.5rem;line-height:1.1}
+.brand p{margin:0;color:var(--mute);font-size:.9rem}
+nav{display:flex;gap:6px;margin-top:12px;overflow-x:auto}
+nav button{flex:1 0 auto;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:500 .95rem Inter,sans-serif;cursor:pointer}
+nav button[aria-current=page]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.m{color:var(--mute);margin:0 0 12px}
+.card{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0;color:var(--ink);font:inherit}
+button.card{cursor:pointer}
+button.card:hover{border-color:var(--terra)}
+.sv{display:grid;grid-template-columns:1fr auto;gap:2px 10px}
+.sv b{font:600 1.1rem Lora,Georgia,serif}
+.sv i{font-style:normal;color:var(--teal);font-weight:600}
+.sv small{grid-column:1/3;color:var(--mute)}
+.sv span{color:var(--mute)}
+.days,.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.day,.t{min-height:48px;border:1px solid var(--teal);background:var(--card);color:var(--ink);border-radius:12px;font:500 1rem Inter,sans-serif;cursor:pointer;padding:6px}
+.day{display:flex;flex-direction:column;align-items:center;line-height:1.2}
+.day b{font:600 1.3rem Lora,Georgia,serif}
+.day small,.day em{font-size:.75rem;color:var(--mute);font-style:normal}
+.day:hover,.t:hover{background:var(--teal);color:var(--bg)}
+.day:hover small,.day:hover em{color:var(--bg)}
+.day:disabled{border-style:dashed;border-color:var(--line);opacity:.6;cursor:not-allowed;background:transparent}
+.day:disabled:hover{color:var(--ink);background:transparent}
+.btn{min-height:46px;padding:0 20px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 1rem Inter,sans-serif;cursor:pointer}
+.btn.p{background:var(--terra);border-color:var(--terra);color:var(--onterra)}
+.btn.link{border:0;background:none;color:var(--teal);padding:0 4px;min-height:44px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+label{display:block;margin:12px 0;font-weight:500}
+label i{font-style:normal;color:var(--mute);font-weight:400}
+input{display:block;width:100%;min-height:46px;margin-top:4px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:400 1rem Inter,sans-serif}
+input[aria-invalid=true]{border-color:var(--err)}
+.er{display:block;color:var(--err);font-size:.85rem;min-height:1px}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.banner{background:var(--surf);border-left:4px solid var(--terra);padding:10px 14px;border-radius:8px;margin:14px 0}
+.code{font:600 1.4rem Lora,Georgia,serif;color:var(--terra);letter-spacing:.06em}
+.bk{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}
+.bk .tm{min-width:52px;text-align:center}
+.bk .tm b{display:block;font:600 1.1rem Lora,Georgia,serif}
+.bk .tm small{color:var(--mute)}
+.bk div p{margin:0}
+.bk>div:last-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.tag{font-size:.7rem;background:var(--surf);color:var(--mute);border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.kpi div{background:var(--surf);border-radius:12px;padding:10px;text-align:center}
+.kpi b{display:block;font:600 1.6rem Lora,Georgia,serif;color:var(--teal)}
+.kpi span{font-size:.8rem;color:var(--mute)}
+h3{font:600 1.05rem Lora,Georgia,serif;margin:20px 0 4px;padding-top:12px;border-top:2px dashed var(--line);text-transform:capitalize}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const CFG={ADMIN_PASSWORD:'taller2026',STEP:20,BLOCKS:[[540,780],[840,1080]],DAYS:[1,2,3,4,5],HORIZON:30,
+SERVICES:[
+{id:'s',name:'Arreglo simple',sub:'Bastilla, botones',min:20,txt:'Para ese dobladillo que quedó largo o el botón que se soltó.'},
+{id:'a',name:'Ajuste de prenda completa',sub:'Vestidos, sacos, polleras',min:40,txt:'Probamos la prenda puesta y la dejamos justo a tu medida.'},
+{id:'m',name:'Confección a medida',sub:'Primera prueba',min:60,txt:'Tomamos medidas, charlamos la idea y vemos telas.'}]};
+const K='taller-modista:v1';
+const p=n=>String(n).padStart(2,'0');
+const ymd=d=>d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+const hm=m=>p(m/60|0)+':'+p(m%60);
+const svc=id=>CFG.SERVICES.find(s=>s.id===id);
+const fd=(d,o)=>new Date(d+'T00:00').toLocaleDateString('es-AR',o||{weekday:'long',day:'numeric',month:'long'});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function bizDays(n){const o=[],t=new Date();for(let i=0;i<(n||CFG.HORIZON);i++){const d=new Date(t.getFullYear(),t.getMonth(),t.getDate()+i);if(CFG.DAYS.includes(d.getDay()))o.push(ymd(d))}return o}
+function load(){try{const d=JSON.parse(localStorage.getItem(K));if(d&&Array.isArray(d.b))return d}catch(e){}return null}
+function save(){try{localStorage.setItem(K,JSON.stringify(DB))}catch(e){}}
+let DB;
+function free(sv,date,ign){const dur=svc(sv).min;if(!CFG.DAYS.includes(new Date(date+'T00:00').getDay()))return[];
+const now=new Date(),isT=date===ymd(now),nm=now.getHours()*60+now.getMinutes();
+const taken=DB.b.filter(x=>x.date===date&&x.id!==ign),out=[];
+for(const[a,b]of CFG.BLOCKS)for(let s=a;s+dur<=b;s+=CFG.STEP){if(isT&&s<=nm)continue;
+if(!taken.some(x=>s<x.start+svc(x.sv).min&&x.start<s+dur))out.push(s)}return out}
+function mkcode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=c[Math.random()*c.length|0];return 'TUR-'+r}
+function add(o){if(!free(o.sv,o.date).includes(o.start))return null;const b={...o,id:Math.random().toString(36).slice(2,9),code:mkcode()};DB.b.push(b);save();return b}
+function mv(id,date,start){const b=DB.b.find(x=>x.id===id);if(!b||!free(b.sv,date,id).includes(start))return false;b.date=date;b.start=start;save();return true}
+function seed(){DB={b:[]};const d=bizDays(10),L=[
+[1,'s',560,'Marta Gutiérrez','Dobladillo de pantalón de vestir'],[1,'a',600,'Lucía Benítez','Vestido de fiesta para casamiento'],
+[1,'m',840,'Carolina Peralta','Primera prueba de traje a medida'],[2,'s',540,'Julieta Domínguez','Cambio de botones del tapado'],
+[2,'a',660,'Sofía Arregui','Ajuste de blazer'],[3,'m',900,'Valentina Ortiz','Vestido de egresada a medida'],
+[3,'s',1000,'Nicolás Ferreyra','Bastilla de pantalón'],[4,'a',560,'Camila Rossi','Pollera para fiesta de 15'],
+[5,'a',960,'Florencia Molina','Vestido de madrina']];
+L.forEach((x,i)=>add({sv:x[1],date:d[x[0]],start:x[2],name:x[3],phone:'11 5550-01'+p(i+10),email:x[3].split(' ')[0].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')+'@ejemplo.com',piece:x[4],notes:'',demo:true}));
+save();return DB}
+DB=load()||seed();
+let ADM=false;try{ADM=sessionStorage.getItem('adm')==='1'}catch(e){}
+const fresh=o=>({view:'book',step:1,sv:null,date:null,start:null,moving:null,done:null,f:{},er:{},msg:'',del:null,look:null,from:null,...o});
+let S=fresh({});
+const app=document.getElementById('app');
+const logo='<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19" fill="none" stroke="var(--terra)" stroke-width="3"/><circle cx="22" cy="22" r="14" fill="none" stroke="var(--terra)" stroke-width="1.5" stroke-dasharray="3 3"/><g fill="var(--teal)"><circle cx="17" cy="18" r="2"/><circle cx="27" cy="18" r="2"/><circle cx="17" cy="26" r="2"/><circle cx="27" cy="26" r="2"/></g><path d="M17 18L27 26M27 18L17 26" stroke="var(--teal)" stroke-width="1.2"/></svg>';
+const tabs=[['book','Reservar'],['mine','Mi reserva'],['admin','Panel del taller']];
+const head=()=>`<header><div class="brand">${logo}<div><h1>Aguja y Ojal</h1><p>Taller de costura · turnos de prueba</p></div></div><nav aria-label="Secciones">${tabs.map(t=>`<button data-act="nav" data-v="${t[0]}" ${S.view===t[0]?'aria-current="page"':''}>${t[1]}</button>`).join('')}</nav></header>`;
+const msg=()=>S.msg?`<div class="banner" role="status">${esc(S.msg)}</div>`:'';
+const back=()=>(S.step>1||S.from)?`<button class="btn link" data-act="back">← Volver</button>`:'';
+const fld=(n,l,t,opt,ac)=>`<label>${l}${opt?' <i>(opcional)</i>':''}<input name="${n}" type="${t}" autocomplete="${ac||'off'}" value="${esc(S.f[n]||'')}" ${S.er[n]?'aria-invalid="true"':''}><span class="er">${esc(S.er[n]||'')}</span></label>`;
+const bk=(b,adm)=>`<article class="bk"><div class="tm"><b>${hm(b.start)}</b><small>${hm(b.start+svc(b.sv).min)}</small></div><div><p><b>${esc(b.name)}</b>${b.demo?'<span class="tag">ejemplo</span>':''}</p><p>${svc(b.sv).name} · ${esc(b.piece)}</p>${adm?`<p class="m">${esc(b.phone)} · ${b.code}</p>`:''}${acts(b)}</div></article>`;
+function acts(b){if(S.del===b.id)return `<div class="row"><span>¿Cancelamos este turno?</span><button class="btn p" data-act="del" data-v="${b.id}">Sí, cancelar</button><button class="btn" data-act="nodel">No</button></div>`;
+return `<div class="row"><button class="btn" data-act="mvstart" data-v="${b.id}">Mover</button><button class="btn" data-act="askdel" data-v="${b.id}">Cancelar</button></div>`}
+function bookV(){const s=S;if(s.done)return doneV();let h=msg();
+if(s.step===1)h+=`${back()}<h2>¿Qué necesitás arreglar?</h2><p class="m">Elegí una opción y te mostramos los horarios libres de verdad, sin llamar.</p>`+CFG.SERVICES.map(x=>`<button class="card sv" data-act="sv" data-v="${x.id}"><b>${x.name}</b><i>${x.min} min</i><span>${x.sub}</span><small>${x.txt}</small></button>`).join('');
+if(s.step===2){const ign=s.moving&&s.moving.id;h+=`${back()}<h2>${s.moving?'¿A qué día lo movemos?':'¿Qué día te queda bien?'}</h2><p class="m">${svc(s.sv).name} · ${svc(s.sv).min} min</p><div class="days">`+bizDays().map(d=>{const n=free(s.sv,d,ign).length;return `<button class="day" data-act="day" data-v="${d}" ${n?'':'disabled'}><span>${fd(d,{weekday:'short'})}</span><b>${+d.slice(8)}</b><small>${fd(d,{month:'short'})}</small><em>${n?n+' libres':'Completo'}</em></button>`}).join('')+'</div>'}
+if(s.step===3){const t=free(s.sv,s.date,s.moving&&s.moving.id);h+=`${back()}<h2>¿A qué hora?</h2><p class="m">${fd(s.date)} · ${svc(s.sv).name}</p>`+(t.length?`<div class="times">${t.map(x=>`<button class="t" data-act="time" data-v="${x}">${hm(x)}</button>`).join('')}</div>`:'<p>Ese día ya no quedan horarios. Probá con otro.</p>')}
+if(s.step===4)h+=`${back()}<h2>Tus datos</h2><p class="m">${svc(s.sv).name} · ${fd(s.date)} a las ${hm(s.start)}</p><form id="f" novalidate>${fld('name','Nombre y apellido','text',0,'name')}${fld('phone','Teléfono','tel',0,'tel')}${fld('email','Email','email',0,'email')}${fld('piece','¿Qué prenda o evento es?','text')}${fld('notes','Algo más que quieras contarnos','text',1)}<button class="btn p" type="submit">Confirmar turno</button></form>`;
+return h}
+function doneV(){const b=S.done.b;return `<div class="card"><h2>${S.done.moved?'¡Listo, movimos tu turno!':'¡Turno reservado!'}</h2><p><b>${fd(b.date)}</b> a las <b>${hm(b.start)}</b> (${svc(b.sv).name}, ${svc(b.sv).min} min).</p><p>Código de reserva: <span class="code">${b.code}</span></p><p class="m">Guardalo: con el código y el email podés mover o cancelar el turno en “Mi reserva”.</p><div class="row">${S.from==='admin'||S.from==='mine'?`<button class="btn p" data-act="again">${S.from==='admin'?'Volver al panel':'Volver a mi reserva'}</button>`:'<button class="btn p" data-act="nav" data-v="book">Reservar otro turno</button>'}</div></div>`}
+function mineV(){const b=S.look&&DB.b.find(x=>x.id===S.look);let h=msg();
+if(!b)return h+`<h2>Mi reserva</h2><p class="m">Ingresá el código que te dimos y tu email.</p><form id="q" novalidate>${fld('code','Código (ej. TUR-4F7K)','text')}${fld('email','Email','email',0,'email')}<button class="btn p" type="submit">Buscar mi turno</button></form>`;
+return h+`<h2>Tu turno</h2><p class="m">${fd(b.date)}</p>${bk(b,false)}<div class="row"><button class="btn link" data-act="nav" data-v="mine">Buscar otro</button></div>`}
+function adminV(){if(!ADM)return msg()+`<h2>Panel del taller</h2><p class="m">Ingresá la clave para ver las reservas.</p><form id="login" novalidate><label>Clave<input name="pw" type="password" autocomplete="current-password" ${S.er.pw?'aria-invalid="true"':''}><span class="er">${esc(S.er.pw||'')}</span></label><button class="btn p" type="submit">Entrar</button></form>`;
+const t=ymd(new Date()),w=ymd(new Date(Date.now()+7*864e5)),up=DB.b.filter(b=>b.date>=t).sort((a,b)=>a.date.localeCompare(b.date)||a.start-b.start);
+let h=msg()+`<h2>Agenda del taller</h2><div class="kpi"><div><b>${up.filter(b=>b.date===t).length}</b><span>Hoy</span></div><div><b>${up.filter(b=>b.date<=w).length}</b><span>Próx. 7 días</span></div><div><b>${up.length}</b><span>Futuros</span></div></div><div class="row"><button class="btn p" data-act="newadm">+ Reserva por teléfono</button><button class="btn" data-act="logout">Salir</button></div>`;
+let last='';up.forEach(b=>{if(b.date!==last){last=b.date;h+=`<h3>${fd(b.date)}</h3>`}h+=bk(b,true)});
+if(!up.length)h+='<p class="m">No hay reservas futuras.</p>';
+return h+`<div class="row" style="margin-top:24px"><button class="btn link" data-act="reset">Restablecer datos de ejemplo</button></div>`}
+function render(){app.innerHTML=head()+(S.view==='book'?bookV():S.view==='mine'?mineV():adminV())}
+function top(){window.scrollTo(0,0)}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;const a=t.dataset.act,v=t.dataset.v;S.msg='';
+if(a==='nav')S=fresh({view:v});
+else if(a==='sv'){S.sv=v;S.step=2}
+else if(a==='day'){S.date=v;S.step=3}
+else if(a==='time'){S.start=+v;if(S.moving){if(mv(S.moving.id,S.date,S.start))S.done={b:DB.b.find(x=>x.id===S.moving.id),moved:true};else{S.msg='Ese horario se ocupó recién. Elegí otro.';S.step=2}}else S.step=4}
+else if(a==='back'){if(S.step<=2&&S.moving)S=fresh({view:S.from,look:S.moving.id});else if(S.step<=1)S=fresh({view:'admin'});else S.step--}
+else if(a==='mvstart'){const b=DB.b.find(x=>x.id===v);S=fresh({view:'book',step:2,sv:b.sv,moving:b,from:S.view})}
+else if(a==='askdel')S.del=v;
+else if(a==='nodel')S.del=null;
+else if(a==='del'){DB.b=DB.b.filter(x=>x.id!==v);save();S.del=null;S.look=null;S.msg='Turno cancelado. La franja quedó libre.'}
+else if(a==='newadm')S=fresh({view:'book',from:'admin'});
+else if(a==='again')S=fresh({view:S.from,look:S.from==='mine'?S.done.b.id:null});
+else if(a==='logout'){ADM=false;try{sessionStorage.removeItem('adm')}catch(x){}S=fresh({view:'admin'})}
+else if(a==='reset'){seed();S.msg='Volvimos a los datos de ejemplo.'}
+render();top()});
+document.addEventListener('submit',e=>{e.preventDefault();const id=e.target.id,f=Object.fromEntries(new FormData(e.target)),er={};S.msg='';
+if(id==='login'){if(f.pw===CFG.ADMIN_PASSWORD){ADM=true;try{sessionStorage.setItem('adm','1')}catch(x){}S.er={}}else S.er={pw:'La clave no es correcta.'}}
+else if(id==='q'){S.f=f;const b=DB.b.find(x=>x.code===(f.code||'').trim().toUpperCase()&&x.email.toLowerCase()===(f.email||'').trim().toLowerCase());if(b){S.look=b.id;S.er={};S.f={}}else{S.er={code:'No encontramos un turno con esos datos. Revisá el código y el email.'}}}
+else if(id==='f'){S.f=f;
+if(!f.name.trim())er.name='Contanos tu nombre.';
+if(f.phone.replace(/\D/g,'').length<8)er.phone='Ingresá un teléfono válido, con característica.';
+if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim()))er.email='Ingresá un email válido.';
+if(!f.piece.trim())er.piece='Decinos qué prenda o evento es.';
+S.er=er;
+if(!Object.keys(er).length){const b=add({sv:S.sv,date:S.date,start:S.start,name:f.name.trim(),phone:f.phone.trim(),email:f.email.trim(),piece:f.piece.trim(),notes:(f.notes||'').trim()});
+if(b){S.done={b};S.er={};S.f={}}else{S.msg='Ese horario se ocupó recién. Elegí otro.';S.step=3}}}
+render();const bad=document.querySelector('[aria-invalid="true"]');if(bad)bad.focus()});
+window.addEventListener('storage',e=>{if(e.key!==K)return;const d=load();if(d){DB=d;if(!/INPUT/.test((document.activeElement||{}).tagName||''))render()}});
+render();
+</script>
+</body>
+</html>
