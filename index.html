@@ -134,7 +134,7 @@ let last='';up.forEach(b=>{if(b.date!==last){last=b.date;h+=`<h3>${fd(b.date)}</
 if(!up.length)h+='<p class="m">No hay reservas futuras.</p>';
 return h+`<div class="row" style="margin-top:24px"><button class="btn link" data-act="reset">Restablecer datos de ejemplo</button></div>`}
 function render(){app.innerHTML=head()+(S.view==='book'?bookV():S.view==='mine'?mineV():adminV())}
-function top(){window.scrollTo(0,0)}
+function toTop(){window.scrollTo(0,0)}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;const a=t.dataset.act,v=t.dataset.v;S.msg='';
 if(a==='nav')S=fresh({view:v});
 else if(a==='sv'){S.sv=v;S.step=2}
@@ -149,7 +149,7 @@ else if(a==='newadm')S=fresh({view:'book',from:'admin'});
 else if(a==='again')S=fresh({view:S.from,look:S.from==='mine'?S.done.b.id:null});
 else if(a==='logout'){ADM=false;try{sessionStorage.removeItem('adm')}catch(x){}S=fresh({view:'admin'})}
 else if(a==='reset'){seed();S.msg='Volvimos a los datos de ejemplo.'}
-render();top()});
+render();toTop()});
 document.addEventListener('submit',e=>{e.preventDefault();const id=e.target.id,f=Object.fromEntries(new FormData(e.target)),er={};S.msg='';
 if(id==='login'){if(f.pw===CFG.ADMIN_PASSWORD){ADM=true;try{sessionStorage.setItem('adm','1')}catch(x){}S.er={}}else S.er={pw:'La clave no es correcta.'}}
 else if(id==='q'){S.f=f;const b=DB.b.find(x=>x.code===(f.code||'').trim().toUpperCase()&&x.email.toLowerCase()===(f.email||'').trim().toLowerCase());if(b){S.look=b.id;S.er={};S.f={}}else{S.er={code:'No encontramos un turno con esos datos. Revisá el código y el email.'}}}
