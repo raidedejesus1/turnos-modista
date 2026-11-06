@@ -6,7 +6,8 @@ Agenda de turnos para un taller de costura pequeño. La idea: que quien necesita
 
 ## Vista previa
 
-- **Vercel:** `https://<tu-proyecto>.vercel.app` ← pendiente: se completa al desplegar (ver [Publicar en Vercel](#publicar-en-vercel)).
+- **Vercel:** https://turnos-modista.vercel.app/
+- Panel del taller: https://turnos-modista.vercel.app/admin (clave de ejemplo: `taller2026`)
 
 ## Qué incluye
 
@@ -67,7 +68,7 @@ export const CFG = {
 
 1. Abrí `src/config.js`.
 2. Reemplazá `taller2026` por la clave nueva.
-3. Guardá y volvé a desplegar (`git push` si está conectado a Vercel).
+3. Guardá y volvé a desplegar (con Vercel conectado a GitHub, alcanza con hacer `git push` a `main`).
 
 La clave de ejemplo es `taller2026`. **Cambiala antes de usarlo con clientas reales.**
 
@@ -115,9 +116,7 @@ Los horarios de `INFO.hours` son texto: mantenelos alineados con `CFG.BLOCKS` y 
 
 1. Entrá a [vercel.com/new](https://vercel.com/new) e importá este repositorio de GitHub.
 2. Vercel detecta Vite solo: build `npm run build`, salida `dist`. No hace falta configurar nada más (el `vercel.json` ya redirige todas las rutas a `index.html`).
-3. Tras el despliegue, copiá la URL y pegala en la sección "Vista previa" de este README.
-
-Cada `git push` a `main` vuelve a desplegar.
+3. Cada `git push` a `main` vuelve a desplegar. La vista previa de este proyecto está en https://turnos-modista.vercel.app/.
 
 ## Identidad visual
 
